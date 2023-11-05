@@ -6,11 +6,9 @@ import { GetStaticPaths, GetStaticProps, Metadata } from 'next';
 //블로그 글 상세
 export default function Post({ post }) {
   const MDXComponent = useMDXComponent(post.body.code || '');
-  const { query } = useRouter();
 
   return (
     <>
-      <div>{query.id}번 블로그글</div>
       <MDXComponent />
     </>
   );
@@ -42,13 +40,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       post,
     },
-  };
-};
-
-export const getMetaData = async ({ params }): Promise<Metadata> => {
-  const post = allPosts.find(({ _raw }) => _raw.flattenedPath === params.id);
-  return {
-    title: post.title,
-    description: post.description,
   };
 };
