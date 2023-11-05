@@ -2,14 +2,13 @@ import Head from 'next/head';
 import Nav from './Nav';
 import metadata from '@/data/metadata';
 import Footer from './Footer';
+import SEO from './SEO';
 
 export default function Container(props) {
-  console.log(props);
+  const title = props.post.title || 'My Blog';
   return (
     <>
-      <Head>
-        <title>{metadata.title}</title>
-      </Head>
+      <SEO title={title} />
       <header>
         <h1>HYEONJI BLOG</h1>
         <Nav />
