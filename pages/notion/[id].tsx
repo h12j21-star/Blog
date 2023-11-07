@@ -1,21 +1,67 @@
-import { allNotionPosts } from '@/.contentlayer/generated/NotionPost/_index.mjs';
+import { Client } from '@notionhq/client';
+const { NotionToMarkdown } = require('notion-to-md');
 
-export default function Post() {
-  return <div>post</div>;
+import rehypeStringify from 'rehype-stringify';
+import remarkParse from 'remark-parse';
+import remarkBreak from 'remark-breaks';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+
+import { unified } from 'unified';
+
+export default function Post({ file }) {
+  const post = file
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+  const unescapeHTML = post
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+  return <div dangerouslySetInnerHTML={{ __html: unescapeHTML }}></div>;
 }
 
 export async function getStaticPaths() {
-  const path = allNotionPosts.map((post) => post._raw.flattenedPath);
-  console.log(path);
+  const notion = await new Client({
+    auth: process.env.NOTION_ACCESS_TOKEN,
+    notionVersion: process.env.NOTION_VERSION,
+  });
+  const databaseId = process.env.NOTION_DATABASE_ID;
+  const dbQueryData = await notion.databases.query({ database_id: databaseId });
+  const page_id = dbQueryData.results.map((id) => id.id);
+
   return {
-    path: path,
-    fallback: false,
+    paths: page_id.map((id) => ({
+      params: {
+        id: id,
+      },
+    })),
+    fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const post = allNotionPosts.find((post) => post._raw.flattenedPath === params.id);
+  const notion = await new Client({
+    auth: process.env.NOTION_ACCESS_TOKEN,
+    notionVersion: process.env.NOTION_VERSION,
+  });
+  const n2m = new NotionToMarkdown({ notionClient: notion });
+
+  const mdblocks = await n2m.pageToMarkdown(params.id);
+  const mdString = await n2m.toMarkdownString(mdblocks);
+  const file = await unified()
+    .use(remarkParse) //markdown->mdast
+    .use(remarkBreak) //line-break지원
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .processSync(mdString.parent)
+    .toString();
   return {
-    post: { post },
+    props: { file: file },
   };
 }

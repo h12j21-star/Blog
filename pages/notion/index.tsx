@@ -1,30 +1,14 @@
-import rehypeStringify from 'rehype-stringify';
-import remarkParse from 'remark-parse';
-import remarkBreak from 'remark-breaks';
-import remarkGfm from 'remark-gfm';
-import remarkRehype from 'remark-rehype';
-import rehypeSanitize from 'rehype-sanitize';
-
-import { unified } from 'unified';
-
 import { Client } from '@notionhq/client';
 import NotionPost from '@/components/NotionPost';
-const { NotionToMarkdown } = require('notion-to-md');
-export default function Notion({ file }) {
-  console.log(file);
-  const post = file
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-  const unescapeHTML = post
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
-  return <div dangerouslySetInnerHTML={{ __html: unescapeHTML }}></div>;
+
+export default function Notion({ dbQueryData, page_id }) {
+  return (
+    <>
+      {dbQueryData.results.map((data, index) => (
+        <NotionPost data={data} index={index} page_id={page_id[index]} key={index} />
+      ))}
+    </>
+  );
 }
 
 export async function getStaticProps() {
@@ -32,25 +16,19 @@ export async function getStaticProps() {
     auth: process.env.NOTION_ACCESS_TOKEN,
     notionVersion: process.env.NOTION_VERSION,
   });
-  const n2m = new NotionToMarkdown({ notionClient: notion });
-
   const databaseId = process.env.NOTION_DATABASE_ID;
+  // proterties들을 불러온다.
+  // 각 요소의 result.id를 markdown으로 변환
+  // 목록(/notion)에 제목,설명,date 표시 클릭-> 상세페이지 이동 (page_id와 함께)
+  const dbQueryData = await notion.databases.query({ database_id: databaseId });
 
-  const mdblocks = await n2m.pageToMarkdown('b0b1533c-8f6c-4322-b5e6-5de1bc146f7a');
-  const mdString = await n2m.toMarkdownString(mdblocks);
-
-  const file = await unified()
-    .use(remarkParse) //markdown->mdast
-    .use(remarkBreak) //line-break지원
-    .use(remarkGfm)
-    .use(remarkRehype)
-    .use(rehypeStringify)
-    .processSync(mdString.parent)
-    .toString();
+  const page_id = dbQueryData.results.map((id) => id.id);
+  //const blockData = await notion.blocks.retrieve({ block_id: page_id[0] });
 
   return {
     props: {
-      file: file,
+      page_id: page_id,
+      dbQueryData: dbQueryData,
     },
   };
 }
