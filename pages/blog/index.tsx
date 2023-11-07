@@ -1,6 +1,7 @@
 import BlogPost from '@/components/BlogPost';
 import { allPosts } from '@/.contentlayer/generated';
 import { GetStaticProps } from 'next';
+
 export default function Blog({ post }) {
   return (
     <div className={`mt-10 flex flex-col`}>

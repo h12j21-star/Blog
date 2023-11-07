@@ -8,13 +8,9 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function Home({ post }) {
   return (
-    <div className={`my-5 w-full`}>
-      <div className={`relative`}>
-        <span>{metadata.title}</span>
-      </div>
+    <>
       <RecentPost props={post[0]} />
-      {/* 포스터 가져와서 출력 */}
-    </div>
+    </>
   );
 }
 
