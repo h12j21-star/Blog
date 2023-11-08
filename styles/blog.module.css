@@ -1,0 +1,59 @@
+.blogBox {
+  margin-top: 20px;
+  padding: 30px;
+}
+
+.blogListBox {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.blogList {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.blogTitle {
+  font-size: 20px;
+  color: #222;
+}
+
+.postInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.postTitle {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.postDes {
+  font-size: 12px;
+}
+
+.postImg {
+  width: 150px;
+  height: 150px;
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+.passButton {
+  border: 0;
+  width: 80px;
+  height: 50px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #000;
+  font-size: 20px;
+}

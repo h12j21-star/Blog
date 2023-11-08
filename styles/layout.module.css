@@ -1,14 +1,7 @@
-/* .box {
-  width: 100vw;
-  height: 100%;
-  overflow: scroll;
-  padding: 0 220px;
-  box-sizing: border-box;
-} */
-
 .box {
   display: grid;
   grid-template-areas: 'header' 'main' 'footer';
+  grid-template-rows: 0.3fr 3fr 0.3fr;
   padding: 0 220px;
 }
 

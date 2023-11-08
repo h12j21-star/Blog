@@ -20,3 +20,7 @@ a {
   margin: -1px;
   overflow: hidden;
 }
+
+main {
+  grid-area: main;
+}

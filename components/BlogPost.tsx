@@ -1,11 +1,14 @@
 import Link from 'next/link';
-
+import style from '@/styles/blog.module.css';
 export default function BlogPost({ props }) {
   return (
-    <Link href={`/blog/${props._raw.flattenedPath}`}>
-      <div className="font-medium text-xs text-gray-400">{props.date}</div>
-      <div className={`font-extrabold text-2xl mt-2`}>💙{props.title}</div>
-      <div className={`font-medium text-gray-600 text-xl mt-1`}>{props.description}</div>
+    <Link href={`/blog/${props._raw.flattenedPath}`} key={props._id} className={style.blogList}>
+      <img src="/basicImage.png" alt="블로그 대표사진" className={style.postImg} />
+      <div className={style.postInfo}>
+        <div className={style.postDes}>{props.date}</div>
+        <div className={style.postTitle}>{props.title}</div>
+        <div className={style.postDes}>{props.description}</div>
+      </div>
     </Link>
   );
 }

@@ -1,13 +1,25 @@
+import style from '@/styles/blog.module.css';
 import BlogPost from '@/components/BlogPost';
 import { allPosts } from '@/.contentlayer/generated';
 import { GetStaticProps } from 'next';
 
 export default function Blog({ post }) {
   return (
-    <div className={`mt-10 flex flex-col`}>
-      {post.map((post) => (
-        <BlogPost props={post} key={post._raw.flattenedPath} />
-      ))}
+    <div className={style.blogBox}>
+      <p className={style.blogTitle}>글</p>
+      <div className={style.blogListBox}>
+        {post.map((post) => (
+          <BlogPost props={post} key={post._raw.flattenedPath} />
+        ))}
+      </div>
+      <div className={style.buttonBox}>
+        <button type="button" className={style.passButton}>
+          이전 글
+        </button>
+        <button type="button" className={style.passButton}>
+          다음 글
+        </button>
+      </div>
     </div>
   );
 }
