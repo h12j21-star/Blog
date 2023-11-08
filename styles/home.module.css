@@ -1,6 +1,11 @@
+.mainBox {
+  grid: main;
+  margin-top: 40px;
+}
+
 .intro_article {
-  height: 440px;
   display: flex;
+  flex-wrap: wrap;
   padding: 0 20px;
   justify-content: space-around;
 }
@@ -24,7 +29,8 @@
 }
 
 .recentSection {
-  margin-top: 70px;
+  margin-top: 40px;
+  padding: 20px;
 }
 
 .sectionTitle {
@@ -37,6 +43,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
+  padding: 10px;
 }
 
 .post {

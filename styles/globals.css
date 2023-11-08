@@ -1,20 +1,22 @@
+body,
 html {
-  width: 100%;
-  height: 100%;
+  margin: 0;
 }
-body {
-  padding: 0px 220px;
-  width: 100%;
-  height: 100%;
-}
-main {
-  margin-top: 73px;
+
+a {
+  text-decoration: none;
+  color: #000;
 }
 
 * {
   box-sizing: border-box;
 }
-a {
-  text-decoration: none;
-  color: #000;
+
+.ir {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
 }

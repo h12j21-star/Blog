@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function Home({ post }) {
   return (
-    <>
+    <div className={style.mainBox}>
       <article className={style.intro_article}>
         <div className={style.introContent}>
           <h2 className={style.introHead}>
@@ -29,7 +29,7 @@ export default function Home({ post }) {
       </article>
 
       <RecentPost props={post[0]} />
-    </>
+    </div>
   );
 }
 

@@ -10,7 +10,7 @@ export default function Nav() {
             {nav.title}
           </Link>
         ))}
-        <img src="/darkmode.png" alt="다크모드" className={style.darkmode} />
+        <input type="button" className={style.lightmode} />
       </div>
     </>
   );
