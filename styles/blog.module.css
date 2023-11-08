@@ -1,5 +1,4 @@
 .blogBox {
-  margin-top: 20px;
   padding: 30px;
 }
 
@@ -47,6 +46,7 @@
   justify-content: space-between;
   padding: 30px;
 }
+
 .passButton {
   border: 0;
   width: 80px;
@@ -56,4 +56,31 @@
   border-radius: 3px;
   border: 1px solid #000;
   font-size: 20px;
+}
+
+.postDetailInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 30px;
+}
+
+.postDetailTitle {
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.postDetailDate {
+  font-size: 20px;
+  color: #383a3f;
+}
+
+.postDetailImg {
+  width: 150px;
+  height: 150px;
+}
+
+.contentBox {
+  padding: 30px;
+  margin-top: 20px;
 }

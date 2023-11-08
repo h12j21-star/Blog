@@ -2,14 +2,20 @@ import { useRouter } from 'next/router';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { allPosts } from '@/.contentlayer/generated/';
 import { GetStaticPaths, GetStaticProps, Metadata } from 'next';
-
+import BlogPost from '@/components/BlogPost';
+import BlogInfo from '@/components/BlogInfo';
+import PostDetail from '@/components/PostDetail';
+import style from '@/styles/blog.module.css';
 //블로그 글 상세
 export default function Post({ post }) {
   const MDXComponent = useMDXComponent(post.body.code || '');
 
   return (
     <>
-      <MDXComponent />
+      <PostDetail props={post} />
+      <div className={style.contentBox}>
+        <MDXComponent />
+      </div>
     </>
   );
 }
