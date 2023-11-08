@@ -1,0 +1,66 @@
+.intro_article {
+  height: 440px;
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-around;
+}
+.introHead {
+  font-size: 72px;
+}
+
+.introContent {
+  width: 450px;
+}
+
+.introDetail {
+  width: 70%;
+  margin-top: 10px;
+}
+
+.introImage {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.recentSection {
+  margin-top: 70px;
+}
+
+.sectionTitle {
+  color: #222;
+  font-size: 20px;
+  font-weight: 300px;
+}
+
+.recentPosts {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.post {
+  width: 50%;
+  display: flex;
+  gap: 20px;
+}
+
+.postInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.postTitle {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.postDes {
+  font-size: 12px;
+}
+
+.postImg {
+  width: 100px;
+  height: 100px;
+}

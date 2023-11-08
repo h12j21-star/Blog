@@ -12,7 +12,7 @@ export default function Container(props) {
       <SEO title={title} />
       <div>
         <header className={style.header}>
-          <h1 className={style.header_title}>didi0 Blog</h1>
+          <h1 className={style.header_title}>임디디</h1>
           <Nav />
         </header>
       </div>

@@ -1,13 +1,25 @@
 import Link from 'next/link';
-
+import style from '@/styles/home.module.css';
 export default function RecentPost({ props }) {
   return (
-    <section className={`mt-10`}>
-      <h1 className={`text-3xl font-extrabold`}>최근 게시물</h1>
-      <div className={`flex flex-col`}>
-        <Link href={`/blog/${props._raw.flattenedPath}`} key={props._id}>
-          <div className={`font-medium text-xl`}>{props.title}</div>
-          <div className={`font-light`}>{props.description}</div>
+    <section className={style.recentSection}>
+      <h2 className={style.sectionTitle}>최근에 적은 글</h2>
+      <div className={style.recentPosts}>
+        <Link href={`/blog/${props._raw.flattenedPath}`} key={props._id} className={style.post}>
+          <img src="/basicImage.png" alt="블로그 대표사진" className={style.postImg} />
+          <div className={style.postInfo}>
+            <div className={style.postDes}>{props.date}</div>
+            <div className={style.postTitle}>{props.title}</div>
+            <div className={style.postDes}>{props.description}</div>
+          </div>
+        </Link>
+        <Link href={`/blog/${props._raw.flattenedPath}`} key={props._id} className={style.post}>
+          <img src="/basicImage.png" alt="블로그 대표사진" className={style.postImg} />
+          <div className={style.postInfo}>
+            <div className={style.postDes}>{props.date}</div>
+            <div className={style.postTitle}>{props.title}</div>
+            <div className={style.postDes}>{props.description}</div>
+          </div>
         </Link>
       </div>
     </section>

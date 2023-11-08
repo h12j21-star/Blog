@@ -4,14 +4,28 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  border-bottom: 0.7px solid #000;
 }
+
 .header_title {
   font-size: 32px;
-  color: #000;
+  color: #f68657;
 }
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+.darkmode {
+  display: block;
+}
+
 .nav_item {
-  display: inline-block;
-  margin-left: 20px;
+  line-height: 28px;
+  display: block;
   font-size: 20px;
   text-align: center;
 }
