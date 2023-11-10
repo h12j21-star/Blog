@@ -24,3 +24,40 @@ a {
 main {
   grid-area: main;
 }
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+p {
+  font-size: 16px;
+  line-height: 40px;
+}
+
+code {
+  font-size: 12px;
+  display: inline-block;
+  background-color: rgba(135, 131, 120, 0.15);
+  color: #eb5757;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+strong > code {
+  display: inline-block;
+  font-size: 12px;
+}
+pre > code {
+  display: inline-block;
+  width: 100%;
+  background-color: rgb(247 246 243);
+  padding: 30px;
+  margin: 20px 0;
+  line-height: 20px;
+}
+
+ul {
+  line-height: 20px;
+}

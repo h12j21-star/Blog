@@ -32,17 +32,3 @@ export async function getStaticProps() {
     },
   };
 }
-
-// https://github.com/remarkjs/remark/blob/main/packages/remark/index.js
-
-// const dbf = async () => {
-//   const notion = await new Client({
-//     auth: 'secret_5n7IfP0tPpa6SWRaBP5UlAzoAHIML4h8X055EzJn7AB',
-//     notionVersion: '2022-06-28',
-//   });
-
-//   const databaseId = '3c1b9961a5cf4961aec7855584d51d97';
-//   const dbObjects = await notion.databases.retrieve({ database_id: databaseId });
-//   const dbQueryData = await notion.databases.query({ database_id: databaseId });
-//   console.log(dbObjects);
-// };

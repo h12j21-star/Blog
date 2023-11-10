@@ -1,6 +1,7 @@
 import { Client } from '@notionhq/client';
 const { NotionToMarkdown } = require('notion-to-md');
 
+import style from '@/styles/blog.module.css';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkBreak from 'remark-breaks';
@@ -22,7 +23,11 @@ export default function Post({ file }) {
     .replace(/&amp;/g, '&')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'");
-  return <div dangerouslySetInnerHTML={{ __html: unescapeHTML }}></div>;
+  return (
+    <div className={style.contentBox}>
+      <div dangerouslySetInnerHTML={{ __html: unescapeHTML }} className={style.contentDetail}></div>
+    </div>
+  );
 }
 
 export async function getStaticPaths() {
@@ -55,7 +60,6 @@ export async function getStaticProps({ params }) {
   const mdString = await n2m.toMarkdownString(mdblocks);
   const file = await unified()
     .use(remarkParse) //markdown->mdast
-    .use(remarkBreak) //line-break지원
     .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeStringify)
