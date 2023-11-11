@@ -98,3 +98,10 @@ code > [data-line]::before {
   color: gray;
   font-size: 12px;
 }
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}

@@ -16,7 +16,9 @@ export default function NotionPost({ data, page_id }) {
         <li className={style.tilPost} key={index}>
           <Link href={`/TIL/${page_id[index]}`}>
             <div className={style.tilDate}>{data.properties.Date.date?.start}</div>
-            <div className={style.tilTitle}>{data.properties.Name.title[0]?.plain_text}</div>
+            <div className={`${style.tilTitle} ellipsis`}>
+              {data.properties.Name.title[0]?.plain_text}
+            </div>
           </Link>
         </li>
       ))}
