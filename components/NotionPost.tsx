@@ -8,7 +8,8 @@ import PassButton from './PassButton';
 export default function NotionPost({ data, page_id }) {
   const post = data.results;
   const postNum = 6;
-  const { page, prev, next } = usePagenation();
+  const totalNum = Math.floor(post.length / postNum);
+  const { page, prev, next } = usePagenation(totalNum);
   const disPlayList = post.slice(page * postNum, (page + 1) * postNum);
   return (
     <>

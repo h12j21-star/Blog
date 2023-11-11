@@ -7,8 +7,8 @@ import PassButton from './PassButton';
 
 export default function BlogPost({ post }) {
   const postNum = 6;
-  const { page, prev, next } = usePagenation();
-  console.log(post);
+  const totalNum = Math.floor(post.length / postNum);
+  const { page, prev, next } = usePagenation(totalNum);
   const disPlayList = post.slice(page * postNum, (page + 1) * postNum);
   return (
     <>
