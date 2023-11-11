@@ -1,13 +1,17 @@
 import { Client } from '@notionhq/client';
 import NotionPost from '@/components/NotionPost';
+import style from '@/styles/til.module.css';
+import PassButton from '@/components/PassButton';
 
 export default function Notion({ dbQueryData, page_id }) {
+  console.log(page_id);
   return (
-    <>
-      {dbQueryData.results.map((data, index) => (
-        <NotionPost data={data} index={index} page_id={page_id[index]} key={index} />
-      ))}
-    </>
+    <section>
+      <h2 className={style.til}>오늘 내가 배운 것</h2>
+      <ul className={style.tilList}>
+        <NotionPost data={dbQueryData} page_id={page_id} />
+      </ul>
+    </section>
   );
 }
 

@@ -7,7 +7,6 @@ import remarkParse from 'remark-parse';
 import remarkBreak from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
-
 import { unified } from 'unified';
 
 export default function Post({ file }) {

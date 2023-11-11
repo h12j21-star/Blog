@@ -1,15 +1,26 @@
+'use client';
 import Link from 'next/link';
+import style from '@/styles/til.module.css';
+import usePagenation from '@/utils/usePagenation';
+import PassButton from './PassButton';
 // title, date, notion id
-export default function NotionPost({ data, index, page_id }) {
-  const post = data.properties;
-  const title = post.Name.title[0]?.plain_text;
-  const date = post.Date.date?.start;
+
+export default function NotionPost({ data, page_id }) {
+  const post = data.results;
+  const postNum = 6;
+  const { page, prev, next } = usePagenation();
+  const disPlayList = post.slice(page * postNum, (page + 1) * postNum);
   return (
     <>
-      <Link href={`/TIL/${page_id}`}>
-        <div className="font-medium text-xs text-gray-400">{title}</div>
-        <div className={`font-extrabold text-2xl mt-2`}>{date}</div>
-      </Link>
+      {disPlayList.map((data, index) => (
+        <li className={style.tilPost} key={index}>
+          <Link href={`/TIL/${page_id[index]}`}>
+            <div className={style.tilDate}>{data.properties.Date.date?.start}</div>
+            <div className={style.tilTitle}>{data.properties.Name.title[0]?.plain_text}</div>
+          </Link>
+        </li>
+      ))}
+      <PassButton prev={prev} next={next} />
     </>
   );
 }

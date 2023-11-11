@@ -1,14 +1,13 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import remarkGfm from 'remark-gfm';
+import rehypePrettyCode from 'rehype-pretty-code';
 import * as notion from '@notionhq/client';
 import * as sourceNotion from 'contentlayer-source-notion';
-import { NotionRenderer } from '@notion-render/client';
-
-// const client = new notion.Client({ auth: 'secret_5n7IfP0tPpa6SWRaBP5UlAzoAHIML4h8X055EzJn7AB' });
-// const renderer = new NotionRenderer({ client });
 export const Post = defineDocumentType(() => ({
   name: 'post',
   contentType: 'mdx',
   filePathPattern: `**/*.mdx`,
+  tags: { type: 'list', of: { type: 'string' }, required: false },
   fields: {
     //required : 필수여부
     title: { type: 'string', required: true },
@@ -28,16 +27,14 @@ export const NotionPost = sourceNotion.defineDatabase(() => ({
   ],
 }));
 
+const options: any = {};
+
+// contentlayer의 스타일링을 위해 remarkGfm (table 지원),rehypeprettycode(code블록)사용한다.
 export default makeSource({
   contentDirPath: 'posts',
   documentTypes: [Post],
   mdx: {
-    //rehypePlugins: [[rehypePrettyCode, options]],
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypePrettyCode, options],
   },
 });
-
-// export const notionMakeSource = sourceNotion.makeSource({
-//   client,
-//   renderer,
-//   databaseTypes: [NotionPost],
-// });

@@ -36,6 +36,7 @@ p {
 }
 
 code {
+  width: 100%;
   font-size: 12px;
   display: inline-block;
   background-color: rgba(135, 131, 120, 0.15);
@@ -49,8 +50,8 @@ strong > code {
   display: inline-block;
   font-size: 12px;
 }
-pre > code {
-  display: inline-block;
+
+pre > p {
   width: 100%;
   background-color: rgb(247 246 243);
   padding: 30px;
@@ -60,4 +61,40 @@ pre > code {
 
 ul {
   line-height: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+code {
+  counter-reset: line;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+pre {
+  border-radius: 10px;
+}
+
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  border-radius: 5px;
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  margin-bottom: 0.3rem;
+  text-align: right;
+  color: gray;
+}
+
+[data-rehype-pretty-code-caption] {
+  color: gray;
+  font-size: 12px;
 }

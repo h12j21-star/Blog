@@ -1,22 +1,19 @@
 import style from '@/styles/home.module.css';
 import { GetStaticProps } from 'next';
-import { Inter } from 'next/font/google';
 import { compareDesc, format, parseISO } from 'date-fns';
 
 import { allPosts } from '@/.contentlayer/generated';
 import RecentPost from '@/components/RecentPost';
 
-const inter = Inter({ subsets: ['latin'] });
-
 export default function Home({ post }) {
   return (
-    <div className={style.mainBox}>
+    <div>
       <article className={style.intro_article}>
         <div className={style.introContent}>
           <h2 className={style.introHead}>
             좋은 영향력을
             <br /> 전하고 싶은
-            <br /> <span>최현지</span> 입니다.
+            <br /> <p className={style.name}>최현지</p> 입니다.
           </h2>
           <p className={style.introDetail}>
             기술을 며칠 동안 공부해 프로젝트에 적용하는

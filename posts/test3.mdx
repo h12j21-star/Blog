@@ -1,10 +1,35 @@
 ---
-title: 제목2
+title: next.js custom hook 사용하기
 date: 2023-02-29
 description: 설명
 ---
 
-## 제목
+## custom hook
 
-- 내용 1
-- 내용 2
+```js title="NotionPost.tsx" js caption="커스텀훅 적용 코드 showLineNumbers"
+export default function NotionPost({ data, page_id }) {
+  const post = data.results;
+  const postNum = 6;
+  const { page, prev, next } = usePagenation();
+  const disPlayList = post.slice(page * postNum, (page + 1) * postNum);
+  return (
+    <>
+      {disPlayList.map((data, index) => (
+        <li className={style.tilPost} key={index}>
+          <Link href={`/TIL/${page_id[index].title}`}>
+            <div className={style.tilDate}>{data.properties.Date.date?.start}</div>
+            <div className={style.tilTitle}>{data.properties.Name.title[0]?.plain_text}</div>
+          </Link>
+        </li>
+      ))}
+      <PassButton prev={prev} next={next} />
+    </>
+  );
+}
+```
+
+### 안녕
+
+---
+
+custom hook을 사용하여 페이지 네이션을 구현해보았다.

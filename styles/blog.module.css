@@ -1,12 +1,8 @@
 .blogBox {
-  padding: 30px;
-}
-
-.blogListBox {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  margin-top: 30px;
+  gap: 20px;
+  padding: 20px;
 }
 
 .blogList {
@@ -83,4 +79,8 @@
 .contentBox {
   padding: 30px;
   margin-top: 20px;
+}
+
+.contentDetail {
+  padding: 20px;
 }
