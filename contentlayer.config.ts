@@ -13,6 +13,7 @@ export const Post = defineDocumentType(() => ({
     date: { type: 'string', required: true },
     description: { type: 'string', required: true },
     tags: { type: 'list', of: { type: 'string' }, required: false },
+    image: { type: 'string', required: false },
   },
 }));
 
