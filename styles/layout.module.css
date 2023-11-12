@@ -1,9 +1,9 @@
 .box {
+  width: 1000px;
   display: grid;
   grid-template-areas: 'header' 'main' 'footer';
   grid-template-rows: 100px auto;
   gap: 40px;
-  padding: 0 220px;
   margin: 0 auto;
 }
 
@@ -22,6 +22,7 @@
   font-size: 32px;
   color: #f68657;
   font-weight: 900;
+  font-family: normal;
 }
 
 .nav {
