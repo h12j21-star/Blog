@@ -7,7 +7,6 @@
 .introHead {
   font-size: 72px;
   margin: 0;
-  font-weight: 300;
 }
 
 .introImage {
@@ -38,7 +37,7 @@
 .sectionTitle {
   color: #222;
   font-size: 20px;
-  font-weight: 300px;
+  font-weight: 300;
   margin: 0;
 }
 

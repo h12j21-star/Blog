@@ -8,9 +8,7 @@ export default function Notion({ dbQueryData, page_id }) {
   return (
     <section>
       <h2 className={style.til}>오늘 내가 배운 것</h2>
-      <ul className={style.tilList}>
-        <NotionPost data={dbQueryData} page_id={page_id} />
-      </ul>
+      <NotionPost data={dbQueryData} page_id={page_id} />
     </section>
   );
 }

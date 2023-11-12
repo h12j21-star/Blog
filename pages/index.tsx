@@ -24,8 +24,7 @@ export default function Home({ post }) {
           <img src="/introImage.jpg" alt="소개이미지" className={style.introImage} />
         </div>
       </article>
-
-      <RecentPost props={post[0]} />
+      <RecentPost props={post} />
     </div>
   );
 }

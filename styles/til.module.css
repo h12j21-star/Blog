@@ -2,11 +2,14 @@
   color: #222;
   font-size: 20px;
   font-weight: 300;
+  margin: 0;
+  padding: 10px 40px;
 }
 
 .tilList {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
   padding: 40px;
 }
@@ -31,8 +34,8 @@
 .tilDate {
   text-align: center;
   font-size: 20px;
-  color: #1f2124;
-  font-weight: 300;
+  color: #383a3f;
+  font-family: light;
   margin-bottom: 15px;
 }
 

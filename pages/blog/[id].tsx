@@ -3,7 +3,7 @@ import { allPosts } from '@/.contentlayer/generated/';
 import { GetStaticPaths, GetStaticProps, Metadata } from 'next';
 import PostDetail from '@/components/PostDetail';
 import style from '@/styles/blog.module.css';
-import { serializeMdx } from '@/utils/mdx';
+
 //블로그 글 상세
 export default function Post({ post }) {
   const MDXComponent = useMDXComponent(post.body.code || '');
