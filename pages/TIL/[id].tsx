@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import { Client } from '@notionhq/client';
 const { NotionToMarkdown } = require('notion-to-md');
@@ -21,12 +22,13 @@ export default function Post({ file, data }) {
         return (
           <Image
             src={attribs.src}
-            width={attribs.width ? attribs.width : 800}
+            width={attribs.width ? attribs.width : 600}
             height={attribs.height ? attribs.height : 500}
             alt={attribs.alt ? attribs.alt : 'Blog post image'}
             quality={100}
             placeholder="blur"
             blurDataURL={attribs.src}
+            priority
           />
         );
       }
@@ -50,12 +52,11 @@ export async function getStaticPaths() {
   });
   const databaseId = process.env.NOTION_DATABASE_ID;
   const dbQueryData = await notion.databases.query({ database_id: databaseId });
-  const page_id = dbQueryData.results.map((id) => id.id);
 
   return {
-    paths: page_id.map((id) => ({
+    paths: dbQueryData.results.map((id) => ({
       params: {
-        id: id,
+        id: id.id,
       },
     })),
     fallback: true,
@@ -67,12 +68,12 @@ export async function getStaticProps({ params }) {
     auth: process.env.NOTION_ACCESS_TOKEN,
     notionVersion: process.env.NOTION_VERSION,
   });
-  const n2m = new NotionToMarkdown({ notionClient: notion });
+  const n2m = await new NotionToMarkdown({ notionClient: notion });
   const mdblocks = await n2m.pageToMarkdown(params.id);
   const mdString = await n2m.toMarkdownString(mdblocks);
-
   const databaseId = process.env.NOTION_DATABASE_ID;
   const dbQueryData = await notion.databases.query({ database_id: databaseId });
+  Promise.all([notion, n2m, mdblocks, mdString, dbQueryData]);
   const postInfo = dbQueryData.results.find(({ id }) => id === params.id);
   const file = await unified()
     .use(remarkParse) //markdown->mdast
