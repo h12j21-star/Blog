@@ -15,13 +15,11 @@
     "incremental": true,
     "paths": {
       "@/*": ["./*"],
-      "@/contentlayer/generated": ["../..contentlayer/generated"],
-      "@/contentlayer/generated/*": ["../..contentlayer/generated/*"]
+      "@/contentlayer/generated": ["./.contentlayer/generated"],
+
+      "@/contentlayer/generated/*": ["./.contentlayer/generated/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./.contentlayer/generated"],
   "exclude": ["node_modules"]
 }
-
-
-//import a from '../../.contentlayer/generated'
