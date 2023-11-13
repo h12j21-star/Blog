@@ -1,7 +1,7 @@
 import style from '@/styles/home.module.css';
 import { GetStaticProps } from 'next';
 import { compareDesc, format, parseISO } from 'date-fns';
-
+import Image from 'next/image';
 import { allPosts } from '@/.contentlayer/generated';
 import RecentPost from '@/components/RecentPost';
 
@@ -21,7 +21,13 @@ export default function Home({ post }) {
           </p>
         </div>
         <div>
-          <img src="/introImage.jpg" alt="소개이미지" className={style.introImage} />
+          <Image
+            src="/introImage.jpg"
+            alt="소개이미지"
+            width={400}
+            height={400}
+            className={style.introImage}
+          />
         </div>
       </article>
       <RecentPost props={post} />

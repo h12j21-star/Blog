@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import { Client } from '@notionhq/client';
 const { NotionToMarkdown } = require('notion-to-md');
+import parse, { domToReact } from 'html-react-parser';
 
 import style from '@/styles/blog.module.css';
 import rehypeStringify from 'rehype-stringify';
@@ -10,26 +12,33 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 
 export default function Post({ file, data }) {
-  console.log(data);
-  const post = file
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-  const unescapeHTML = post
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
+  const replaceImage: any = {
+    replace: ({ name, attribs, children }) => {
+      if (name === 'figure' && /wp-block-image/.test(attribs.class)) {
+        return <>{domToReact(children, replaceImage)}</>;
+      }
+      if (name === 'img') {
+        return (
+          <Image
+            src={attribs.src}
+            width={attribs.width ? attribs.width : 800}
+            height={attribs.height ? attribs.height : 500}
+            alt={attribs.alt ? attribs.alt : 'Blog post image'}
+            quality={100}
+            placeholder="blur"
+            blurDataURL={attribs.src}
+          />
+        );
+      }
+    },
+  };
   return (
     <div className={style.contentBox}>
       <div className={style.postDetailInfo}>
         <div className={style.postDetailTitle}>{data.properties?.Name.title[0]?.plain_text}</div>
         <div className={style.postDetailDate}>{data.properties.Date.date?.start}</div>
       </div>
-      <div dangerouslySetInnerHTML={{ __html: unescapeHTML }} className={style.contentDetail}></div>
+      <div className={style.contentDetail}>{parse(file, replaceImage)}</div>
     </div>
   );
 }

@@ -4,7 +4,6 @@ import style from '@/styles/til.module.css';
 import PassButton from '@/components/PassButton';
 
 export default function Notion({ dbQueryData, page_id }) {
-  console.log(page_id);
   return (
     <section>
       <h2 className={style.til}>오늘 내가 배운 것</h2>

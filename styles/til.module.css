@@ -9,7 +9,6 @@
 .tilList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 40px;
   padding: 40px;
 }
@@ -36,10 +35,12 @@
   font-size: 20px;
   color: #383a3f;
   font-family: light;
+  font-weight: 300;
   margin-bottom: 15px;
 }
 
 .tilTitle {
+  text-align: center;
   width: 200px;
   color: #383a3f;
 }
