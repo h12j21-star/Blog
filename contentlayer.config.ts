@@ -4,7 +4,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import * as notion from '@notionhq/client';
 import * as sourceNotion from 'contentlayer-source-notion';
 export const Post = defineDocumentType(() => ({
-  name: 'post',
+  name: 'Post',
   contentType: 'mdx',
   filePathPattern: `**/*.mdx`,
   fields: {
