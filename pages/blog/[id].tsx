@@ -1,5 +1,5 @@
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allPosts } from '@/.contentlayer/generated/';
+import { allPosts } from '@/.contentlayer/generated';
 import { GetStaticPaths, GetStaticProps, Metadata } from 'next';
 import PostDetail from '@/components/PostDetail';
 import style from '@/styles/blog.module.css';
