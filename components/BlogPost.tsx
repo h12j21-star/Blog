@@ -17,7 +17,10 @@ export default function BlogPost({ post }) {
         {disPlayList.map((el, index) => (
           <li className={style.tilPost} key={index}>
             <Link
-              href={{ pathname: `/blog/${el._raw.flattenedPath}` }}
+              href={{
+                pathname: `/blog/${el._raw.flattenedPath}`,
+                query: { date: el.date, title: el.title },
+              }}
               key={el._id}
               className={style.blogList}
             >
