@@ -4,7 +4,6 @@ import SEO from './SEO';
 import style from '@/styles/layout.module.css';
 import Link from 'next/link';
 import localFont from 'next/font/local';
-
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { useRouter } from 'next/router';
 
@@ -15,7 +14,7 @@ const myFont = localFont({
   ],
 });
 
-const TIMEOUT = 200;
+const TIMEOUT = 400;
 const getTransitionStyles = {
   entering: {
     position: `absolute`,
@@ -32,13 +31,13 @@ const getTransitionStyles = {
 };
 
 export default function Container(props) {
-  //const title = props.post.title || 'My Blog';
-  const title = 'My Blog';
+  const title = props.title || '오늘 공부 기록';
+  const description = props.description;
   const router = useRouter();
   return (
     <div className={myFont.className}>
       <div className={style.box}>
-        <SEO title={title} />
+        <SEO title={title} description={description} />
         <header className={style.header}>
           <Link href={'/'}>
             <h1 className={style.header_title}>임디디</h1>
