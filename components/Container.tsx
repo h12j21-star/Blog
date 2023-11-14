@@ -15,7 +15,7 @@ const myFont = localFont({
   ],
 });
 
-const TIMEOUT = 100;
+const TIMEOUT = 200;
 const getTransitionStyles = {
   entering: {
     position: `absolute`,
