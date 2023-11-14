@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { Client } from '@notionhq/client';
 const { NotionToMarkdown } = require('notion-to-md');
 import HTMLReactParser, { DOMNode, domToReact, Element } from 'html-react-parser';
-
 import style from '@/styles/blog.module.css';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
