@@ -30,6 +30,8 @@ export async function getStaticProps() {
     props: {
       page_id: page_id,
       dbQueryData: dbQueryData,
+      title: '오늘 공부한 기록',
+      description: '프론트엔드 TIL 목록입니다.',
     },
   };
 }

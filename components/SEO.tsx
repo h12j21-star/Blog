@@ -1,11 +1,18 @@
 import Head from 'next/head';
 
-export default function SEO({ title }) {
+export default function SEO({ title, description }) {
   return (
     <Head>
       <title>{title}</title>
-      <meta name="description" content="NextJS Events" />
+      <meta name="description" content={description} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://didi0blog.vercel.app/" />
+      <meta property="og:image" content={''} />
+      <meta property="og:article:author" content="didi0" />
     </Head>
   );
 }

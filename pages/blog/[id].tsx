@@ -42,6 +42,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post,
+      title: post.title,
+      description: post.description,
     },
   };
 };

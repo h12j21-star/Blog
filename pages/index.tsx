@@ -1,10 +1,15 @@
 import style from '@/styles/home.module.css';
-import { GetStaticProps } from 'next';
+import type { GetStaticProps, Metadata } from 'next';
 import { compareDesc, format, parseISO } from 'date-fns';
 import Image from 'next/image';
 import { allPosts } from '@/.contentlayer/generated';
 import RecentPost from '@/components/RecentPost';
+import Link from 'next/link';
 
+// export const metadata: Metadata = {
+//   title: 'home',
+//   description: '...',
+// };
 export default function Home({ post }) {
   return (
     <div>
@@ -15,10 +20,14 @@ export default function Home({ post }) {
             <br /> 전하고 싶은
             <br /> <p className={style.name}>최현지</p> 입니다.
           </h2>
-          <p className={style.introDetail}>
-            기술을 며칠 동안 공부해 프로젝트에 적용하는
-            <br /> 끈질긴 근성을 가지고 있습니다.
-          </p>
+          <ul>
+            <li className={style.introDetail}>
+              <Link href={'https://github.com/h12j21-star'}> GitHub </Link>
+            </li>
+            <li className={style.introDetail}>
+              <Link href={'https://velog.io/@h12j21'}> Velog </Link>
+            </li>
+          </ul>
         </div>
         <div>
           <Image
@@ -40,6 +49,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const post = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
   // compareDesc : 1 첫번째가 두번째보다 앞날일때
   return {
-    props: { post },
+    props: { post, title: '블로그 홈', description: '프론트엔드 기술 블로그입니다.' },
   };
 };

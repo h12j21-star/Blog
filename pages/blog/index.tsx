@@ -20,6 +20,8 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       post,
+      title: '블로그 목록',
+      description: '프론트엔드 기술 블로그 목록입니다.',
     },
   };
 };

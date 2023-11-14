@@ -10,7 +10,7 @@ export default function Nav() {
             {nav.title}
           </Link>
         ))}
-        <input type="button" className={style.lightmode} />
+        <input type="button" title="화면 색변환 버튼" className={style.lightmode} />
       </div>
     </>
   );
