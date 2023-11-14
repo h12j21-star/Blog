@@ -14,6 +14,12 @@ import { useRouter } from 'next/router';
 
 export default function Post({ file }: { file: string }) {
   const { query } = useRouter();
+
+  let fileToString = file;
+  if (typeof file !== 'string') {
+    fileToString = '';
+  }
+
   return (
     <div className={style.contentBox}>
       <div className={style.postDetailInfo}>
@@ -21,7 +27,7 @@ export default function Post({ file }: { file: string }) {
         <div className={style.postDetailDate}>{query.date}</div>
       </div>
       <div className={style.contentDetail}>
-        {HTMLReactParser(file, {
+        {HTMLReactParser(fileToString, {
           replace: (domNode) => {
             const typedDomNode = domNode as Element;
             if (typedDomNode.name === 'img') {
