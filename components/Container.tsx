@@ -14,21 +14,21 @@ const myFont = localFont({
   ],
 });
 
-const TIMEOUT = 400;
-const getTransitionStyles = {
-  entering: {
-    position: `absolute`,
-    opacity: 0,
-  },
-  entered: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
-    opacity: 1,
-  },
-  exiting: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
-    opacity: 0,
-  },
-};
+// const TIMEOUT = 400;
+// const getTransitionStyles = {
+//   entering: {
+//     position: `absolute`,
+//     opacity: 0,
+//   },
+//   entered: {
+//     transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
+//     opacity: 1,
+//   },
+//   exiting: {
+//     transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
+//     opacity: 0,
+//   },
+// };
 
 export default function Container(props) {
   const title = props.title || '오늘 공부 기록';
@@ -44,7 +44,7 @@ export default function Container(props) {
           </Link>
           <Nav />
         </header>
-        <TransitionGroup style={{ position: 'relative' }}>
+        {/* <TransitionGroup style={{ position: 'relative' }}>
           <Transition
             key={router.pathname}
             timeout={{
@@ -62,7 +62,7 @@ export default function Container(props) {
               </main>
             )}
           </Transition>
-        </TransitionGroup>
+        </TransitionGroup> */}
         <Footer />
       </div>
     </div>
