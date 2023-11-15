@@ -22,10 +22,11 @@ export default function Home({ post }) {
           </h2>
           <ul>
             <li className={style.introDetail}>
-              <Link href={'https://github.com/h12j21-star'}> GitHub </Link>
+              GitHub :
+              <Link href={'https://github.com/h12j21-star'}> https://github.com/h12j21-star </Link>
             </li>
             <li className={style.introDetail}>
-              <Link href={'https://velog.io/@h12j21'}> Velog </Link>
+              Velog :<Link href={'https://velog.io/@h12j21'}> https://velog.io/@h12j21 </Link>
             </li>
           </ul>
         </div>
