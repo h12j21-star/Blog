@@ -44,27 +44,31 @@ export default function Container(props) {
           </Link>
           <Nav />
         </header>
-        {/* <TransitionGroup style={{ position: 'relative' }}>
-          <Transition
-            key={router.pathname}
-            timeout={{
-              enter: TIMEOUT,
-              exit: TIMEOUT,
-            }}
-          >
-            {(status) => (
-              <main
-                style={{
-                  ...getTransitionStyles[status],
-                }}
-              >
-                {props.children}
-              </main>
-            )}
-          </Transition>
-        </TransitionGroup> */}
+        <main>{props.children}</main>
         <Footer />
       </div>
     </div>
   );
+}
+
+{
+  /* <TransitionGroup style={{ position: 'relative' }}>
+<Transition
+  key={router.pathname}
+  timeout={{
+    enter: TIMEOUT,
+    exit: TIMEOUT,
+  }}
+>
+  {(status) => (
+    <main
+      style={{
+        ...getTransitionStyles[status],
+      }}
+    >
+      {props.children}
+    </main>
+  )}
+</Transition>
+</TransitionGroup> */
 }
