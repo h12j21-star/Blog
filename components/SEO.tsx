@@ -13,6 +13,7 @@ export default function SEO({ title, description }) {
       <meta property="og:url" content="https://didi0blog.vercel.app/" />
       <meta property="og:image" content={''} />
       <meta property="og:article:author" content="didi0" />
+      <meta name="google-site-verification" content="6B0LSI8Tb_plL1bSNLuHkOuuMULbofOWSZ4WlM0M_lI" />
     </Head>
   );
 }
