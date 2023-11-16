@@ -1,6 +1,9 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 const ScriptTag = () => {
   const codeToRunOnClient = `(function() {
+    if(!localStorage.getItem('mode')){
+      localStorage.setItem('mode','light')
+    }
     document.body.setAttribute('data-dark',localStorage.getItem('mode'))
 })()`;
 
