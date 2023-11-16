@@ -11,6 +11,7 @@
   gap: 40px;
   padding: 10px 20px;
 }
+
 .introHead {
   font-size: 72px;
   margin: 0;
@@ -32,7 +33,7 @@
     1px -1px 0 var(--color-main),
     -1px 1px 0 var(--color-main),
     1px 1px 0 var(--color-main);
-  color: #fff;
+  color: var(--color-main-font);
   font-weight: 900;
   color: var(--color-main);
 }
@@ -43,7 +44,7 @@
 }
 
 .sectionTitle {
-  color: #222;
+  color: var(--color-titlefont);
   font-size: 20px;
   font-weight: 300;
   margin: 0;
@@ -58,9 +59,20 @@
 }
 
 .post {
-  width: 50%;
+  width: 90%;
   display: flex;
   gap: 20px;
+  border: 1px solid var(--color-border-post);
+  border-radius: 10px;
+  padding: 10px;
+}
+.post:hover {
+  transform: scale(1.02);
+  transition-duration: 0.5s;
+}
+.post:not(:hover) {
+  transform: scale(1);
+  transition-duration: 0.5s;
 }
 
 .postInfo {
@@ -76,7 +88,7 @@
 
 .postDes {
   font-size: 12px;
-  color: #383a3f;
+  color: var(--color-des);
 }
 
 .postImg {
@@ -95,6 +107,7 @@
 .link {
   position: relative;
   border: 2px solid var(--color-main-sub);
+  color: var(--color-main-font);
   border-radius: 10px;
   padding: 7px 10px;
   cursor: pointer;

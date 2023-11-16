@@ -1,5 +1,5 @@
 .til {
-  color: #222;
+  color: var(--color-titlefont);
   font-size: 20px;
   font-weight: 300;
   margin: 0;
@@ -21,26 +21,32 @@
   width: 280px;
   height: 150px;
   border-radius: 5px;
-  border: 1px solid #1f2124;
+  border: 1px solid var(--color-border-color);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .tilPost:hover {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  transform: translateY(-0.35rem);
+  transform: scale(1.02);
+  transition-duration: 0.5s;
+}
+
+.tilPost:not(:hover) {
+  transform: scale(1);
+  transition-duration: 0.5s;
 }
 
 .tilDate {
   text-align: center;
   font-size: 20px;
-  color: #383a3f;
   font-family: light;
   font-weight: 300;
   margin-bottom: 15px;
+  color: var(--color-date);
 }
 
 .tilTitle {
   text-align: center;
   width: 200px;
-  color: #383a3f;
+  color: var(--color-titlefont);
 }

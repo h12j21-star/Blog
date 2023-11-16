@@ -5,6 +5,8 @@
   gap: 40px;
   margin: 0 auto;
   padding: 0 220px;
+  background-color: var(--color-background);
+  color: var(--color-main-font);
 }
 
 .header {
@@ -14,15 +16,16 @@
   top: 0;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.7px solid #000;
-  background-color: #fff;
+  border-bottom: 0.7px solid var(--color-border-color);
+  background-color: var(--color-background);
+  z-index: 100;
 }
 
 .header_title {
   width: 124px;
   text-align: center;
   font-size: 32px;
-  color: #f68657;
+  color: var(--color-main);
   font-weight: 900;
   font-family: normal;
 }
@@ -49,13 +52,28 @@
   background-size: 30px 45px;
 }
 
+.darkmode {
+  width: 50px;
+  border: 0;
+  background: url('../public/dark_default.png') center no-repeat;
+  background-size: 30px 45px;
+}
+
+.darkmode:hover {
+  width: 50px;
+  border: 0;
+  background: url('../public/_dark_hover.png') center no-repeat;
+  background-size: 30px 45px;
+}
+
 .nav_item {
   font-size: 16px;
   text-align: center;
-  border: 2px solid #1f2124;
+  border: 2px solid var(--color-border-color);
   border-radius: 3px;
   padding: 10px;
   line-height: 25px;
+  color: var(--color-main-font);
 }
 
 .footer {
@@ -68,7 +86,7 @@
   width: 213px;
   margin: 0 auto;
   padding: 20px 0;
-  border-top: 1px solid #000;
+  border-top: 1px solid var(--color-border-color);
 }
 
 .footer_GitIcon {
