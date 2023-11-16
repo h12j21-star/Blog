@@ -1,0 +1,186 @@
+---
+title: 게시물 더보기 버튼 만들기
+date: 2023-8-13
+description: 더보기 버튼 구현하기
+tags:
+  - React
+  - Project
+---
+
+다이어리의 일상기록페이지를 가면 지금까지 작성한 일기를 볼 수 있다. 게시물의 내용이 길때 내용을 한번에 보이게 할 수도 있고, 더보기 버튼을 통해 펼칠 수도 있는데, 더보기 버튼을 구현해보고 싶어서 구현해보기로 했다.
+
+# ⭕️ 구현
+
+- 글씨가 content 컨테이너를 넘친다면 → 더보기 버튼 예시 : …더보기
+  - 더보기는 버튼으로 처리한다.
+  - 글박스를 넘치는 글내용은 안보이도록 처리한다.
+    - 누르면 : 버튼이 없어지고, white-space:pre-line에 의해 줄바꿈이 발생한다.
+    - 새로고침이나 뒤로가기 누르면 더보기버튼이 다시 생김
+    - 버튼 클릭 유무에 따라 리스트의 길이가 유동적으로 바뀌어야한다.
+- 글씨가 content 컨테이너를 넘치지 않는다면 더보기 버튼을 보이지 않는다.
+  - 더보기 버튼 없음
+
+## 🧷 사용한 css 속성
+
+css와 styled-component의 props를 사용하여 구현했다.
+
+```css
+overflow: hidden
+white-space: no-wrap
+
+```
+
+#### overflow
+
+요소의 크기가 너무 커서 요소의 부모요소를 넘는 경우에 처리법을 지정한다.
+부모요소의 높이값을 지정하거나 white-space:nowrap처리를 반드시 해주어야한다.
+
+```css
+overflow:hidden // 넘치는 컨텐츠를 보이지 않게 한다.
+overflow:visible // 넘치는 컨텐츠를 보이게한다.
+overflow:clip // hidden처럼 컨턴츠를 보이지 않게 하고 스크롤이 생기지 않게한다.
+overflow:scroll // 넘치는 부분에 스크롤을 생성한다.
+overflow:auto //사용자 에이젠트가 정하고, 새로운 블록 서식 문맥을 생성한다. 데스크톱 브라우저의 경우 콘텐츠가 넘칠 때 스크롤바를 노출한다.
+
+```
+
+더보기 버튼에서 사용한 overflow의 속성은 overflow:hidden이다.
+서버에서 받아온 일기 내용을 보여주는 요소의 높이를 글 한줄인 높이만 보이도록 설정을 했다.
+한줄이상의 길이인 일기 내용을 overflow:hidden에 의해서 보이지 않게된다.
+더보기 버튼을 누르면 overflow:visible을 하여 글 내용이 모두 보이도록 설정한다.
+
+#### white-space
+
+요소가 공백문자를 처리하는 법을 지정한다.
+더보기 버튼에는 white-space: pre-line을 사용했다.
+
+```css
+white-space: normal; // default 값으로 연속 공백을 하나로 합친다. 한줄이 길때 줄바꿈을 한다.
+white-space: nowrap; // 연속 공백을 하나로 합친다. 줄바꿈은 <br/>로 인식한다.
+white-space: pre; // 연속 공백을 유지하고 줄바꿈은 <br/>로 인식한다.
+white-space: pre-wrap; // 연속 공백 유지. 줄 바꿈은 개행 문자와 <br> 요소에서 일어나며, 한 줄이 너무 길어서 넘칠 경우 자동으로 줄을 바꾼다.
+white-space: pre-line; // 연속 공백을 하나로 합친다. 줄바꿈은 개행 문자와 <br> 요소에서 일어난다. 한 줄이 너무 길어서 넘칠 경우 자동으로 줄을바꾼다.
+white-space: break-spaces; //
+```
+
+글내용 박스를 넘치는 요소에는 더보기 버튼을 누른 경우 white-space:pre-line 속성을 주어 서버에서 받아온 개행문자를 인식하여 사용자가 작성한 그대로 개행문자를 인식한 글이 보이게된다.
+
+## 🧷 js
+
+### 더보기 버튼 유무 판단
+
+한줄이상인 일기 내용을 구별하기 위해서 js처리를 통해 한줄이상인지 아닌지를 구분해야한다.
+
+```javascript
+const getContentLen = () => {
+  let longContents = props.data.logList.map((item) => item.content_main.indexOf('\n') > 0);
+  setLongContent([...longContents]);
+};
+useEffect(() => {
+  getContentLen();
+}, [props.page]);
+```
+
+서버에서 받아온 내용에 개행문자가 있다면 true, 없다면 false를 출력하도록 map함수를 작성하여 useState에 저장했다. 이 함수는 게시글의 페이지가 바뀔때마다 실행되도록 useEffect를 작성했다.
+
+useState의 값은
+
+```
+[true,true,false,false,false]
+```
+
+useState값은 위처럼 나오는데, true이면 더보기 버튼을 보여주고 false이면 더보기 버튼을 보이지 않도록 구현했다.
+
+### 더보기 버튼 누른뒤 펼치기
+
+```tsx
+const [moreButton, setMoreButton] = useState<number>(0);
+const MoreButtonHandler = (index: number) => {
+  setMoreButton(index + 1);
+};
+```
+
+```tsx
+<ViewLi key={index} clickIndex={moreButton} isMobile={isMobile}>
+  <ViewTitle>{item.content_title}</ViewTitle>
+  <ViewDate>{item.datetime.split(' ')[0]}</ViewDate>
+  {item.content_image ? (
+    <ViewImg src={item.content_image} view={isMobile} alt="게시한 이미지" />
+  ) : (
+    <></>
+  )}
+  <ViewContent className="content">{item.content_main}</ViewContent>
+  <MoreButton
+    isLongContent={longContent[index] as boolean}
+    onClick={() => MoreButtonHandler(index)}
+  >
+    더보기
+  </MoreButton>
+</ViewLi>
+```
+
+더보기 버튼을 누르면 MoreButtonHandler 함수가 작동하여 index를 moreButton에 저장한다. 이 값은 버튼의 상위 요소인 li에 전달된다.
+
+## 🧷 css
+
+styled-component는 props값을 전달 받을 수 있다.
+props에 전달한 값은
+
+```
+isLongContent : true or false // 개행문자가 있는지 없는지 구분하는 boolean값
+clickIndex : true or false // 더보기 버튼을 눌렀는지 구분하는 boolean 값
+```
+
+clickIndex는 어떤 게시물인지 구분한다. 자식선택자의 몇번째인지를 clickIndex로 전달한다. 자식선택자는 index값이 아닌 몇번째인지로 구분을 하기때문에 index저장시 +1 해야한다. clickIndex를 이용해서 button과 태그 와 Li의 길이를 유동적으로 설정 할 수 있다.
+isLongContent는 button에 전달되어 버튼을 보이게 할지 여부를 전한다.
+
+```css
+const ViewLi = styled.li<TextType>`
+    &:nth-child(${(props) => props.clickIndex}) > button {
+        display: none;
+    }
+
+    &:nth-child(${(props) => props.clickIndex}) > p.content {
+        white-space: pre-line;
+        overflow: visible;
+        height: 10%;
+    }
+    &:nth-child(${(props) => props.clickIndex}) {
+        height: auto;
+    }
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: ${(props) => (props.isMobile ? '2% 5%' : '2% 15%')};
+    border-bottom: 1px solid #dbdbdb;
+`;
+```
+
+```css
+const MoreButton = styled.button<ContentType>`
+    &::before {
+        content: '...';
+    };
+    display: ${(props) => (props.isLongContent ? 'visible' : 'none')};
+    width: 20%;
+    border: 0;
+    background-color: white;
+    text-align: left;
+    color: gray;
+`;
+```
+
+## 🧷 결과
+
+![](https://velog.velcdn.com/images/h12j21/post/b6fafdd1-3418-4eb4-8b52-644f13997a82/image.png)
+
+위의 결과처럼 한줄을 넘으면 더보기 버튼이 존재하고,아니면 더보기 버튼이 존재하지 않는다.
+
+더보기 버튼을 누른 값을 전달해주는 함수를 작성하여 버튼을 누르면 누른 인덱스의 값에 +1 한 값이 저장된다. 이 값은 글 content요소에 전달되어 true이면 white-space: pre-line 처리를 해준다.
+
+![](https://velog.velcdn.com/images/h12j21/post/5816e4cf-f768-4b70-84ec-2fb3e42e5355/image.png)
+
+더보기 버튼을 누르면 위의 사진같이 펼쳐져 글의 내용이 전부 보이는 것을 알 수 있다.
+이번에 구현한 더보기 버튼은 한페이지에 하나의 더보기만 누를 수 있도록 구현을 했다. 한번에 여러개 더보기 버튼을 누를 수 있는 방법도 구현해볼 예정이다.😀

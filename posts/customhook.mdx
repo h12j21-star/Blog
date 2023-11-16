@@ -32,8 +32,30 @@ export default function NotionPost({ data, page_id }) {
 }
 ```
 
-### 안녕
-
 ---
 
 custom hook을 사용하여 페이지 네이션을 구현해보았다.
+
+```js title="usePagenation.tsx"
+'use client';
+import { useState } from 'react';
+
+export default function usePagenation(last) {
+  const [page, setPage] = useState(0);
+
+  const prev = () => {
+    if (page !== 0) {
+      setPage((prev) => (prev -= 1));
+    }
+  };
+  const next = () => {
+    if (last !== page) {
+      setPage((prev) => (prev += 1));
+    }
+  };
+
+  return { prev, next, page };
+}
+```
+
+이 코드는 블로그 목록과 오늘 공부한 기록 목록에서 사용한다

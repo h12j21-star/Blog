@@ -1,15 +1,13 @@
-import style from '@/styles/home.module.css';
-import type { GetStaticProps, Metadata } from 'next';
-import { compareDesc, format, parseISO } from 'date-fns';
 import Image from 'next/image';
-import { allPosts } from '@/.contentlayer/generated';
-import RecentPost from '@/components/RecentPost';
 import Link from 'next/link';
 
-// export const metadata: Metadata = {
-//   title: 'home',
-//   description: '...',
-// };
+import style from '@/styles/home.module.css';
+import type { GetStaticProps } from 'next';
+import { compareDesc } from 'date-fns';
+
+import { allPosts } from '@/.contentlayer/generated';
+import RecentPost from '@/components/RecentPost';
+
 export default function Home({ post }) {
   return (
     <article className={style.intro_article}>
@@ -18,7 +16,7 @@ export default function Home({ post }) {
           <h2 className={style.introHead}>
             <p className={style.name}>didi0 Blog</p>
           </h2>
-          <p>프론트엔드 기술 기록 블로그입니다!</p>
+          <p>프론트엔드 기술 기록입니다!</p>
           <div className={style.linkDiv}>
             <Link href={'https://github.com/h12j21-star'} className={style.link}>
               GitHub
