@@ -3,7 +3,7 @@ import Image from 'next/image';
 import style from '@/styles/home.module.css';
 import BlogInfo from './BlogInfo';
 export default function RecentPost({ props }) {
-  const recent = props.slice(0, 2);
+  const recent = props.slice(0, 4);
   return (
     <section className={style.recentSection}>
       <h2 className={style.sectionTitle}>최근에 적은 글</h2>

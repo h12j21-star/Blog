@@ -1,19 +1,21 @@
 .box {
-  width: 1000px;
   display: grid;
   grid-template-areas: 'header' 'main' 'footer';
   grid-template-rows: 100px auto;
   gap: 40px;
   margin: 0 auto;
+  padding: 0 220px;
 }
 
 .header {
   grid-area: header;
   display: flex;
+  position: sticky;
+  top: 0;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   border-bottom: 0.7px solid #000;
+  background-color: #fff;
 }
 
 .header_title {

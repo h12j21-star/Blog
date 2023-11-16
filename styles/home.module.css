@@ -1,8 +1,15 @@
 .intro_article {
   display: flex;
   flex-wrap: wrap;
-  padding: 20px;
-  justify-content: space-around;
+}
+
+.introContent {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 10px 20px;
 }
 .introHead {
   font-size: 72px;
@@ -10,9 +17,10 @@
 }
 
 .introImage {
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .name {
@@ -20,12 +28,13 @@
   font-size: 72px;
   /* offset-x | offset-y | blur-radius | color */
   text-shadow:
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px 0 black,
-    1px 1px 0 black;
+    -1px -1px 0 var(--color-main),
+    1px -1px 0 var(--color-main),
+    -1px 1px 0 var(--color-main),
+    1px 1px 0 var(--color-main);
   color: #fff;
   font-weight: 900;
+  color: var(--color-main);
 }
 
 .recentSection {
@@ -42,8 +51,10 @@
 
 .recentPosts {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 30px;
+  gap: 20px;
 }
 
 .post {
@@ -73,4 +84,46 @@
   height: 100px;
   border-radius: 5px;
   object-fit: cover;
+}
+
+.linkDiv {
+  margin-top: 30px;
+  display: flex;
+  gap: 30px;
+}
+
+.link {
+  position: relative;
+  border: 2px solid var(--color-main-sub);
+  border-radius: 10px;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.link:hover {
+  background-color: var(--color-main-sub);
+}
+
+.link::before {
+  display: inline-block;
+  padding-right: 10px;
+  content: '🔗';
+}
+
+.tooltip_text {
+  display: none;
+  position: absolute;
+  bottom: -30px;
+  right: -50px;
+  max-width: 200px;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 0.8em;
+  color: white;
+  background: var(--color-main-sub);
+}
+
+.tooltip:hover .tooltip_text {
+  display: block;
 }
