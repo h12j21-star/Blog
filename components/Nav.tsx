@@ -8,11 +8,12 @@ import style from '@/styles/layout.module.css';
 export default function Nav() {
   const [darkmode, isDarkmode] = useState(false);
   const setDarkmode = () => {
-    isDarkmode((prev) => !prev);
-    if (darkmode) {
+    if (localStorage.getItem('mode') === 'dark') {
+      isDarkmode(false);
       localStorage.setItem('mode', 'light');
       document.body.setAttribute('data-dark', localStorage.getItem('mode'));
-    } else {
+    } else if (localStorage.getItem('mode') === 'light') {
+      isDarkmode(true);
       localStorage.setItem('mode', 'dark');
       document.body.setAttribute('data-dark', localStorage.getItem('mode'));
     }

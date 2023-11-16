@@ -24,6 +24,8 @@
   --color-titlefont: #fff;
   --color-des: #fff;
   --color-date: #fff;
+  --image: url('../public/dark_default.png');
+  --image-hover: url('../public/_dark_hover.png');
 }
 
 body,

@@ -55,14 +55,14 @@
 .darkmode {
   width: 50px;
   border: 0;
-  background: url('../public/dark_default.png') center no-repeat;
+  background: var(--image) center no-repeat;
   background-size: 30px 45px;
 }
 
 .darkmode:hover {
   width: 50px;
   border: 0;
-  background: url('../public/_dark_hover.png') center no-repeat;
+  background: var(--image-hover) center no-repeat;
   background-size: 30px 45px;
 }
 
