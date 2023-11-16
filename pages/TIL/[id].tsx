@@ -2,11 +2,10 @@
 import Image from 'next/image';
 import { Client } from '@notionhq/client';
 const { NotionToMarkdown } = require('notion-to-md');
-import HTMLReactParser, { DOMNode, domToReact, Element } from 'html-react-parser';
+import HTMLReactParser, { Element } from 'html-react-parser';
 import style from '@/styles/blog.module.css';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
-import remarkBreak from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
@@ -39,7 +38,7 @@ export default function Post({ file }: { file: string }) {
                   alt={typedDomNode.attribs.alt ? typedDomNode.attribs.alt : 'Blog post image'}
                   quality={100}
                   placeholder="blur"
-                  blurDataURL={typedDomNode.attribs.src}
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcsGiBKQAF5QIZ9ZdMcQAAAABJRU5ErkJggg=="
                   priority
                 />
               );
