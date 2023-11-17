@@ -19,7 +19,6 @@ export default function BlogPost({ post }) {
             <Link
               href={{
                 pathname: `/blog/${el._raw.flattenedPath}`,
-                query: { date: el.date, title: el.title },
               }}
               key={el._id}
               className={style.blogList}
