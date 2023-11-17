@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import navlinks from '@/data/navlink';
 import Link from 'next/link';
@@ -7,6 +7,13 @@ import style from '@/styles/layout.module.css';
 
 export default function Nav() {
   const [darkmode, isDarkmode] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem('mode') === 'light') {
+      isDarkmode(false);
+    } else if (localStorage.getItem('mode') === 'dark') {
+      isDarkmode(true);
+    }
+  }, []);
   const setDarkmode = () => {
     if (localStorage.getItem('mode') === 'dark') {
       isDarkmode(false);
