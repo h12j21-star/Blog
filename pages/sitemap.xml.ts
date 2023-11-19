@@ -26,7 +26,6 @@ const generateSitemap = (data, origin) => {
 const getDate = new Date().toISOString();
 
 export const getServerSideProps = async ({ res }) => {
-  const post = allPosts.map((item) => item._raw.flattenedPath);
   const postPaths = allPosts.map((path) => {
     return {
       location: `/blog/${path._raw.flattenedPath}`,
