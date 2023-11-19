@@ -10,9 +10,10 @@ export default function Post({ post }) {
   return (
     <>
       <PostDetail props={post} />
-      <div className={style.contentBox}>
+      <section className={style.contentBox}>
+        <h2 className={style.ir}>{post.title}</h2>
         <MDXComponent />
-      </div>
+      </section>
     </>
   );
 }

@@ -1,15 +1,16 @@
 'use client';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Client } from '@notionhq/client';
 const { NotionToMarkdown } = require('notion-to-md');
-import HTMLReactParser, { Element } from 'html-react-parser';
-import style from '@/styles/blog.module.css';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
-import { useRouter } from 'next/router';
+import HTMLReactParser, { Element } from 'html-react-parser';
+
+import style from '@/styles/blog.module.css';
 
 export default function Post({ file }: { file: string }) {
   const { query } = useRouter();
@@ -20,7 +21,8 @@ export default function Post({ file }: { file: string }) {
   }
 
   return (
-    <div className={style.contentBox}>
+    <section className={style.contentBox}>
+      <h2 className={style.ir}>{query.title}</h2>
       <div className={style.postDetailInfo}>
         <div className={style.postDetailTitle}>{query.title}</div>
         <div className={style.postDetailDate}>{query.date}</div>
@@ -46,7 +48,7 @@ export default function Post({ file }: { file: string }) {
           },
         })}
       </div>
-    </div>
+    </section>
   );
 }
 
