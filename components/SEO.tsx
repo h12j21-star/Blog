@@ -15,6 +15,7 @@ export default function SEO({ title, description }) {
       <meta property="og:article:author" content="didi0" />
       <meta name="google-site-verification" content="6B0LSI8Tb_plL1bSNLuHkOuuMULbofOWSZ4WlM0M_lI" />
       <meta name="naver-site-verification" content="33079e801268bc7383c86eda86505586446a82ff" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
   );
 }
