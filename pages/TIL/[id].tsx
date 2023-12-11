@@ -1,8 +1,9 @@
 'use client';
+const { NotionToMarkdown } = require('notion-to-md');
+
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Client } from '@notionhq/client';
-const { NotionToMarkdown } = require('notion-to-md');
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
@@ -11,6 +12,7 @@ import { unified } from 'unified';
 import HTMLReactParser, { Element } from 'html-react-parser';
 
 import style from '@/styles/blog.module.css';
+import rehypeHighlight from 'rehype-highlight';
 
 export default function Post({ file }: { file: string }) {
   const { query } = useRouter();
@@ -83,6 +85,7 @@ export async function getStaticProps({ params }) {
     .use(remarkParse) //markdown->mdast
     .use(remarkGfm)
     .use(remarkRehype)
+    .use(rehypeHighlight, { detect: true })
     .use(rehypeStringify)
     .processSync(mdString.parent)
     .toString();
