@@ -59,13 +59,13 @@ p {
 
 code {
   width: 100%;
-  font-size: 12px;
+  font-size: 16px;
   display: inline-block;
   background-color: rgba(135, 131, 120, 0.15);
-  color: #eb5757;
   padding: 5px;
   margin-bottom: 10px;
   border-radius: 4px;
+  line-height: 20px;
 }
 
 strong > code {
@@ -81,13 +81,8 @@ pre > p {
   line-height: 20px;
 }
 
-ul {
-  line-height: 20px;
-}
-
 li {
-  list-style: none;
-  line-height: 20px;
+  line-height: 30px;
 }
 
 button {
